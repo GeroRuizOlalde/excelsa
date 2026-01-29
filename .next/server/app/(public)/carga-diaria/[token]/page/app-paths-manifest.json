@@ -1,0 +1,3 @@
+{
+  "/(public)/carga-diaria/[token]/page": "app/(public)/carga-diaria/[token]/page.js"
+}

@@ -13,16 +13,16 @@
 # testing
 /coverage
 
-# next.js
-/.next/
-/out/
-
 # production
 /build
+# IMPORTANTE: No ignoramos .next para poder subir la build a Hostinger
+# /.next
 
 # misc
 .DS_Store
 *.pem
+*.zip
+*.log
 
 # debug
 npm-debug.log*

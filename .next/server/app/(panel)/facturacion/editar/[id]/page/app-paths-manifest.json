@@ -1,0 +1,3 @@
+{
+  "/(panel)/facturacion/editar/[id]/page": "app/(panel)/facturacion/editar/[id]/page.js"
+}

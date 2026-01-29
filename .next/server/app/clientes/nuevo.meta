@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(panel)/layout,_N_T_/(panel)/clientes/layout,_N_T_/(panel)/clientes/nuevo/layout,_N_T_/(panel)/clientes/nuevo/page,_N_T_/clientes/nuevo"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KHBhbmVsKQ/clientes/nuevo/__PAGE__",
+    "/!KHBhbmVsKQ/clientes/nuevo",
+    "/!KHBhbmVsKQ/clientes",
+    "/!KHBhbmVsKQ",
+    "/_index",
+    "/_head"
+  ]
+}
