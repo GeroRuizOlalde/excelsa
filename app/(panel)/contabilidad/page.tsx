@@ -185,6 +185,9 @@ export default function ContabilidadPage() {
          nuevoEstado.pasivos_no_corrientes = estadoGuardado.pasivos_no_corrientes || 0;
          nuevoEstado.deuda_proveedores_inicial = estadoGuardado.deuda_proveedores_inicial || 0;
          nuevoEstado.activos_no_corrientes = estadoGuardado.activos_no_corrientes || 0;
+         if (!movimientos || movimientos.length === 0) {
+            nuevoEstado.otros_ingresos = estadoGuardado.otros_ingresos || 0;
+         }
       }
 
       if (movimientos && movimientos.length > 0) {
@@ -279,6 +282,7 @@ export default function ContabilidadPage() {
         cliente_id: clienteId,
         periodo: `${periodo}-01`,
         ventas_totales: n(data.ventas_totales),
+        otros_ingresos: n(data.otros_ingresos),
         costo_ventas: costoVentasTotal,
         impuestos: impuestosTotal,
         alquileres: n(data.alquileres),

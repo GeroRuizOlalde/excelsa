@@ -222,7 +222,13 @@ export default function CargaDiariaPage() {
 
   const borrarMovimiento = async (movId: string) => {
     if(!confirm("¿Borrar este movimiento?")) return;
-    await supabase.from('movimientos').delete().eq('id', movId);
+    if (!cliente?.id) return toast.error("Sesión inválida");
+    const { error } = await supabase
+      .from('movimientos')
+      .delete()
+      .eq('id', movId)
+      .eq('cliente_id', cliente.id);
+    if (error) return toast.error("No autorizado");
     setMovimientos(movimientos.filter(m => m.id !== movId));
     toast.success("Eliminado");
   };
