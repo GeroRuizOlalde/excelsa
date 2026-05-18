@@ -50,6 +50,54 @@
         "x-next-revalidate-tag-token"
       ]
     },
+    "/clientes/detalle": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/clientes/detalle",
+      "dataRoute": "/clientes/detalle.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/clientes/editar": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/clientes/editar",
+      "dataRoute": "/clientes/editar.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/clientes/nuevo": {
       "experimentalBypassFor": [
         {
@@ -170,6 +218,30 @@
         "x-next-revalidate-tag-token"
       ]
     },
+    "/facturacion/editar": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/facturacion/editar",
+      "dataRoute": "/facturacion/editar.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/facturacion/nueva": {
       "experimentalBypassFor": [
         {
@@ -266,6 +338,30 @@
         "x-next-revalidate-tag-token"
       ]
     },
+    "/reportes/mensual": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/reportes/mensual",
+      "dataRoute": "/reportes/mensual.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/reportes": {
       "experimentalBypassFor": [
         {
@@ -290,11 +386,35 @@
         "x-next-revalidate-tag-token"
       ]
     },
+    "/carga-diaria": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/carga-diaria",
+      "dataRoute": "/carga-diaria.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/favicon.ico": {
       "initialHeaders": {
         "cache-control": "public, max-age=0, must-revalidate",
         "content-type": "image/x-icon",
-        "x-next-cache-tags": "_N_T_/layout,_N_T_/favicon.ico/layout,_N_T_/favicon.ico/route,_N_T_/favicon.ico"
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/favicon.ico/layout,_N_T_/favicon.ico/route,_N_T_/favicon.ico/"
       },
       "experimentalBypassFor": [
         {
@@ -371,8 +491,8 @@
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "81d41893d4513ae839f0c6c2966e72f1",
-    "previewModeSigningKey": "13e9c7522b4d1b8415684a4a3ae987d96f62b02a8357a7682c18f8bbb4546afd",
-    "previewModeEncryptionKey": "5353df9d5c8b31b416ff9e1f3bd1758e6b249aed7237a05fcd441611816d4412"
+    "previewModeId": "0cfbc19df6a897f3e85da0472b2244e3",
+    "previewModeSigningKey": "bd12ce80c695068fd853533e13840b2f95ef339c53a17e99e8f7b55012fe0421",
+    "previewModeEncryptionKey": "22d529d4b2c9578e1306726b878937b219cabac4e7ed0bad67eadef04413a7ff"
   }
 }

@@ -224,7 +224,7 @@ export default function ContabilidadPage() {
     if (!clienteId) return toast.warning("Seleccioná un cliente primero");
     const cliente = clientes.find(c => c.id.toString() === clienteId);
     if (!cliente?.token_acceso) return toast.error("Sin token configurado");
-    const url = `${window.location.origin}/carga-diaria/${cliente.token_acceso}`;
+    const url = `${window.location.origin}/carga-diaria/?token=${cliente.token_acceso}`;
     navigator.clipboard.writeText(url);
     setLinkCopiado(true);
     toast.success("Link copiado");
@@ -279,6 +279,7 @@ export default function ContabilidadPage() {
         cliente_id: clienteId,
         periodo: `${periodo}-01`,
         ventas_totales: n(data.ventas_totales),
+        otros_ingresos: n(data.otros_ingresos), // <--- ¡ESTO FALTABA!
         costo_ventas: costoVentasTotal,
         impuestos: impuestosTotal,
         alquileres: n(data.alquileres),

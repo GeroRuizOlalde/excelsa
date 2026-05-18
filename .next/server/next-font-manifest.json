@@ -1,9 +1,9 @@
 {
   "app": {
-    "[project]/app/(panel)/clientes/[id]/page": [
+    "[project]/app/(panel)/clientes/detalle/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
-    "[project]/app/(panel)/clientes/editar/[id]/page": [
+    "[project]/app/(panel)/clientes/editar/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
     "[project]/app/(panel)/clientes/nuevo/page": [
@@ -21,7 +21,7 @@
     "[project]/app/(panel)/dashboard/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
-    "[project]/app/(panel)/facturacion/editar/[id]/page": [
+    "[project]/app/(panel)/facturacion/editar/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
     "[project]/app/(panel)/facturacion/nueva/page": [
@@ -36,10 +36,13 @@
     "[project]/app/(panel)/productos/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
+    "[project]/app/(panel)/reportes/mensual/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
     "[project]/app/(panel)/reportes/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
-    "[project]/app/(public)/carga-diaria/[token]/page": [
+    "[project]/app/(public)/carga-diaria/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
     "[project]/app/_not-found/page": [

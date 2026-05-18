@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Forzar barra al final si no es un archivo (para coincidir con trailingSlash: true)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_URI} !/$
+  RewriteRule . %{REQUEST_URI}/ [L,R=301]
+
+  # Página de error personalizada (usa la de Next.js)
+  ErrorDocument 404 /404.html
+</IfModule>

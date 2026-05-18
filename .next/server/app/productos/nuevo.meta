@@ -2,7 +2,7 @@
   "headers": {
     "x-nextjs-stale-time": "300",
     "x-nextjs-prerender": "1",
-    "x-next-cache-tags": "_N_T_/layout,_N_T_/(panel)/layout,_N_T_/(panel)/productos/layout,_N_T_/(panel)/productos/nuevo/layout,_N_T_/(panel)/productos/nuevo/page,_N_T_/productos/nuevo"
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(panel)/layout,_N_T_/(panel)/productos/layout,_N_T_/(panel)/productos/nuevo/layout,_N_T_/(panel)/productos/nuevo/page,_N_T_/productos/nuevo/"
   },
   "segmentPaths": [
     "/_tree",

@@ -6,12 +6,26 @@
   "basePath": "",
   "redirects": [
     {
-      "source": "/:path+/",
-      "destination": "/:path+",
+      "source": "/:file((?!\\.well-known(?:/.*)?)(?:[^/]+/)*[^/]+\\.\\w+)/",
+      "destination": "/:file",
+      "internal": true,
+      "priority": true,
+      "missing": [
+        {
+          "type": "header",
+          "key": "x-nextjs-data"
+        }
+      ],
+      "statusCode": 308,
+      "regex": "^(?:/((?!\\.well-known(?:/.*)?)(?:[^/]+/)*[^/]+\\.\\w+))/$"
+    },
+    {
+      "source": "/:notfile((?!\\.well-known(?:/.*)?)(?:[^/]+/)*[^/\\.]+)",
+      "destination": "/:notfile/",
       "internal": true,
       "priority": true,
       "statusCode": 308,
-      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+      "regex": "^(?:/((?!\\.well-known(?:/.*)?)(?:[^/]+/)*[^/\\.]+))$"
     }
   ],
   "headers": [],
@@ -20,40 +34,7 @@
     "afterFiles": [],
     "fallback": []
   },
-  "dynamicRoutes": [
-    {
-      "page": "/carga-diaria/[token]",
-      "regex": "^/carga\\-diaria/([^/]+?)(?:/)?$",
-      "routeKeys": {
-        "nxtPtoken": "nxtPtoken"
-      },
-      "namedRegex": "^/carga\\-diaria/(?<nxtPtoken>[^/]+?)(?:/)?$"
-    },
-    {
-      "page": "/clientes/editar/[id]",
-      "regex": "^/clientes/editar/([^/]+?)(?:/)?$",
-      "routeKeys": {
-        "nxtPid": "nxtPid"
-      },
-      "namedRegex": "^/clientes/editar/(?<nxtPid>[^/]+?)(?:/)?$"
-    },
-    {
-      "page": "/clientes/[id]",
-      "regex": "^/clientes/([^/]+?)(?:/)?$",
-      "routeKeys": {
-        "nxtPid": "nxtPid"
-      },
-      "namedRegex": "^/clientes/(?<nxtPid>[^/]+?)(?:/)?$"
-    },
-    {
-      "page": "/facturacion/editar/[id]",
-      "regex": "^/facturacion/editar/([^/]+?)(?:/)?$",
-      "routeKeys": {
-        "nxtPid": "nxtPid"
-      },
-      "namedRegex": "^/facturacion/editar/(?<nxtPid>[^/]+?)(?:/)?$"
-    }
-  ],
+  "dynamicRoutes": [],
   "staticRoutes": [
     {
       "page": "/",
@@ -74,10 +55,28 @@
       "namedRegex": "^/_not\\-found(?:/)?$"
     },
     {
+      "page": "/carga-diaria",
+      "regex": "^/carga\\-diaria(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/carga\\-diaria(?:/)?$"
+    },
+    {
       "page": "/clientes",
       "regex": "^/clientes(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/clientes(?:/)?$"
+    },
+    {
+      "page": "/clientes/detalle",
+      "regex": "^/clientes/detalle(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/clientes/detalle(?:/)?$"
+    },
+    {
+      "page": "/clientes/editar",
+      "regex": "^/clientes/editar(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/clientes/editar(?:/)?$"
     },
     {
       "page": "/clientes/nuevo",
@@ -108,6 +107,12 @@
       "regex": "^/facturacion(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/facturacion(?:/)?$"
+    },
+    {
+      "page": "/facturacion/editar",
+      "regex": "^/facturacion/editar(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/facturacion/editar(?:/)?$"
     },
     {
       "page": "/facturacion/nueva",
@@ -144,6 +149,12 @@
       "regex": "^/reportes(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/reportes(?:/)?$"
+    },
+    {
+      "page": "/reportes/mensual",
+      "regex": "^/reportes/mensual(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/reportes/mensual(?:/)?$"
     }
   ],
   "dataRoutes": [],
