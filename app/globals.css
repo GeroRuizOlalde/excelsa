@@ -33,3 +33,24 @@
 .bg-primary-dynamic { background-color: rgb(var(--primary)); }
 .text-primary-dynamic { color: rgb(var(--primary)); }
 .border-primary-dynamic { border-color: rgb(var(--primary)); }
+
+/* Animación marquee continua */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+
+/* Línea decorativa animada */
+@keyframes lineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* Fade-in suave para elementos hero */
+@keyframes heroFade {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
