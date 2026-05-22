@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, LogIn, MessageCircle } from 'lucide-react';
+import { Menu, X, LogIn, ArrowUpRight } from 'lucide-react';
 import { WHATSAPP_LINK } from '@/lib/constants';
 
 const NAV_LINKS = [
@@ -15,89 +15,90 @@ const NAV_LINKS = [
 ];
 
 export default function NavbarPublic() {
-  const pathname  = usePathname();
-  const isHome    = pathname === '/';
+  const pathname = usePathname();
+  const isHome   = pathname === '/';
 
-  const [scrolled,  setScrolled]  = useState(!isHome);
-  const [menuOpen,  setMenuOpen]  = useState(false);
+  const [scrolled, setScrolled] = useState(!isHome);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     if (!isHome) { setScrolled(true); return; }
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, [isHome]);
 
-  const transparent = isHome && !scrolled && !menuOpen;
+  const floating = isHome && !scrolled && !menuOpen;
 
   return (
     <motion.nav
-      initial={{ y: -24, opacity: 0 }}
+      initial={{ y: -22, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed w-full z-50 transition-all duration-500 ${
-        transparent
-          ? 'bg-transparent py-7'
-          : 'bg-white/98 backdrop-blur-xl border-b border-slate-100 py-4 shadow-sm'
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className={`fixed inset-x-0 top-0 z-50 font-body transition-all duration-500 ${
+        floating
+          ? 'py-6'
+          : 'py-3 bg-excelsa-cream/85 backdrop-blur-xl border-b border-excelsa-sand2/60 shadow-[0_1px_30px_-12px_rgba(0,35,102,0.25)]'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 flex justify-between items-center">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-10">
 
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 z-50 select-none">
-          <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-black text-sm italic
-                           transition-colors duration-300
-                           ${transparent ? 'bg-white text-[#0c1a3e]' : 'bg-[#0c1a3e] text-white'}`}>
-            E
-          </div>
-          <span className={`text-[11px] font-black uppercase tracking-[0.25em] transition-colors duration-300
-                            ${transparent ? 'text-white' : 'text-slate-900'}`}>
+        {/* Logo montaña */}
+        <Link href="/" className="z-50 flex items-center gap-2.5 select-none">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="Excelsa" className="h-8 w-auto lg:h-9" />
+          <span className="font-display text-[1.35rem] font-semibold leading-none tracking-tight text-excelsa-navy">
             Excelsa
           </span>
         </Link>
 
         {/* Desktop */}
-        <div className="hidden lg:flex items-center gap-10 text-[10px] font-black uppercase tracking-[0.2em]">
+        <div className="hidden items-center gap-9 lg:flex">
           {NAV_LINKS.map(({ href, label }) => {
             const active = pathname === href;
             return (
               <Link
                 key={href}
                 href={href}
-                className={`transition-colors ${
-                  active           ? 'text-blue-700' :
-                  transparent      ? 'text-white/70 hover:text-white' :
-                                     'text-slate-500 hover:text-blue-700'
+                className={`relative text-[13px] font-semibold tracking-wide transition-colors ${
+                  active ? 'text-excelsa-clay' : 'text-excelsa-ink/70 hover:text-excelsa-navy'
                 }`}
               >
                 {label}
+                {active && (
+                  <span className="absolute -bottom-1.5 left-0 h-[2px] w-full rounded-full bg-excelsa-clay" />
+                )}
               </Link>
             );
           })}
+
           <Link
             href="/login"
-            className={`flex items-center gap-1.5 px-5 py-2 rounded-full border transition-all ${
-              transparent
-                ? 'border-white/25 text-white hover:border-white/60'
-                : 'border-slate-200 text-slate-700 hover:border-slate-400'
-            }`}
+            className="flex items-center gap-1.5 text-[13px] font-semibold text-excelsa-ink/60 transition-colors hover:text-excelsa-navy"
           >
-            <LogIn size={11} /> Acceso
+            <LogIn size={13} /> Acceso
           </Link>
+
           <Link
             href="/contacto"
-            className="bg-blue-700 text-white px-7 py-2.5 rounded-full hover:bg-[#0c1a3e] transition-all shadow-lg shadow-blue-700/25"
+            className="group flex items-center gap-2 rounded-full bg-excelsa-navy px-5 py-2.5 text-[13px] font-bold text-excelsa-cream shadow-lg shadow-excelsa-navy/20 transition-all hover:bg-excelsa-clay"
           >
-            Contactar
+            Hablemos
+            <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </div>
 
-        {/* Mobile icons */}
-        <div className="flex items-center gap-3 lg:hidden z-50">
-          <Link href="/login" className={`p-2 rounded-lg transition-colors ${transparent ? 'text-white' : 'text-slate-700'}`}>
+        {/* Mobile */}
+        <div className="z-50 flex items-center gap-2 lg:hidden">
+          <Link href="/login" className="p-2 text-excelsa-ink/70">
             <LogIn size={18} />
           </Link>
-          <button onClick={() => setMenuOpen(!menuOpen)} className={`transition-colors ${transparent ? 'text-white' : 'text-slate-900'}`}>
+          <button
+            aria-label="Menú"
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="p-1 text-excelsa-navy"
+          >
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -110,28 +111,35 @@ export default function NavbarPublic() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden bg-white border-t border-slate-100 lg:hidden"
+            className="overflow-hidden border-t border-excelsa-sand2/60 bg-excelsa-cream lg:hidden"
           >
-            <div className="flex flex-col p-8 gap-6">
+            <div className="flex flex-col gap-1 p-7">
               {NAV_LINKS.map(({ href, label }) => (
                 <Link
                   key={href}
                   href={href}
                   onClick={() => setMenuOpen(false)}
-                  className={`text-sm font-black uppercase tracking-widest transition-colors
-                               ${pathname === href ? 'text-blue-700' : 'text-slate-900 hover:text-blue-700'}`}
+                  className={`border-b border-excelsa-sand2/50 py-4 font-display text-2xl font-medium transition-colors ${
+                    pathname === href ? 'text-excelsa-clay' : 'text-excelsa-navy'
+                  }`}
                 >
                   {label}
                 </Link>
               ))}
               <Link
+                href="/contacto"
+                onClick={() => setMenuOpen(false)}
+                className="mt-5 flex items-center justify-center gap-2 rounded-full bg-excelsa-navy py-4 font-bold text-excelsa-cream"
+              >
+                Hablemos <ArrowUpRight size={16} />
+              </Link>
+              <Link
                 href={WHATSAPP_LINK}
                 target="_blank"
                 onClick={() => setMenuOpen(false)}
-                className="mt-4 py-4 bg-blue-700 text-white font-bold rounded-xl
-                           flex items-center justify-center gap-2 text-xs uppercase tracking-widest"
+                className="mt-2 text-center text-sm font-semibold text-excelsa-ink/60"
               >
-                <MessageCircle size={16} /> Contactar por WhatsApp
+                o escribinos por WhatsApp
               </Link>
             </div>
           </motion.div>

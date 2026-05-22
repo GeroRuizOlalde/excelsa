@@ -1,9 +1,24 @@
 import './globals.css';
-import { Inter } from 'next/font/google';
+import { Inter, Fraunces, Hanken_Grotesk } from 'next/font/google';
 import { ThemeProvider } from '@/lib/ThemeProvider';
 import { Toaster } from 'sonner';
 
+// Panel (se mantiene en Inter)
 const inter = Inter({ subsets: ['latin'] });
+
+// Sitio público (editorial cálido)
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  axes: ['SOFT', 'opsz'],
+  variable: '--font-display',
+  display: 'swap',
+});
+const hanken = Hanken_Grotesk({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-body',
+  display: 'swap',
+});
 
 // 1. CONFIGURACIÓN DE METADATOS PARA SEO Y PWA
 export const metadata = {
@@ -37,7 +52,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className="scroll-smooth" suppressHydrationWarning>
-      <body className={`${inter.className} antialiased selection:bg-blue-600/10 selection:text-blue-600`}>
+      <body className={`${inter.className} ${fraunces.variable} ${hanken.variable} antialiased selection:bg-[#C15F3C]/15 selection:text-[#A84B2B]`}>
         <ThemeProvider>
           {children}
           {/* Notificaciones elegantes para el Portal de Clientes y Landing */}

@@ -3233,7 +3233,7 @@ function AppContainer({ children }) {
                                         "path": ("TURBOPACK compile-time value", "/_next/image"),
                                         "loader": ("TURBOPACK compile-time value", "default"),
                                         "dangerouslyAllowSVG": ("TURBOPACK compile-time value", false),
-                                        "unoptimized": ("TURBOPACK compile-time value", false),
+                                        "unoptimized": ("TURBOPACK compile-time value", true),
                                         "domains": ("TURBOPACK compile-time value", []),
                                         "remotePatterns": ("TURBOPACK compile-time value", []),
                                         "localPatterns": ("TURBOPACK compile-time value", [

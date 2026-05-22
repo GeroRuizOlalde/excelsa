@@ -2,147 +2,92 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, Building2, Layers, Globe, BarChart3, Zap, Target } from 'lucide-react';
+import { ArrowRight, Building2, Layers, Globe, BarChart3, Zap, Target, Quote } from 'lucide-react';
 import NavbarPublic from '@/components/NavbarPublic';
 import FooterPublic from '@/components/FooterPublic';
+import PageHero from '@/components/PageHero';
+import ContourBg from '@/components/ContourBg';
 import { WHATSAPP_LINK } from '@/lib/constants';
-
-const fadeUp = {
-  hidden:  { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const } },
-};
-const stagger = { visible: { transition: { staggerChildren: 0.12 } } };
+import { fadeUp, stagger } from '@/lib/motion';
 
 const STATS = [
-  { value: "200+", label: "Empresas acompañadas",     sub: "PyMEs y corporaciones regionales" },
-  { value: "15+",  label: "Años de trayectoria",      sub: "Experiencia comprobada en el mercado" },
-  { value: "98%",  label: "Satisfacción de clientes", sub: "Índice de retención documentado" },
-  { value: "3×",   label: "Crecimiento promedio",     sub: "Resultado real a 12 meses" },
+  { value: "200+", label: "Empresas acompañadas" },
+  { value: "15+",  label: "Años de trayectoria" },
+  { value: "98%",  label: "Retención de clientes" },
+  { value: "3×",   label: "Crecimiento promedio" },
 ];
 
 const SECTORES = [
-  { Icon: Building2, label: "Construcción e Infraestructura",  desc: "Empresas constructoras, inmobiliarias y desarrolladoras de obra pública y privada." },
-  { Icon: Layers,    label: "Manufactura e Industria",          desc: "Plantas industriales, fábricas y empresas de producción regional." },
-  { Icon: Globe,     label: "Agroindustria y Exportación",      desc: "Bodegas, empacadoras, cooperativas y exportadores de productos regionales." },
-  { Icon: BarChart3, label: "Comercio y Distribución",          desc: "Comercios mayoristas, distribuidores y cadenas de retail locales." },
-  { Icon: Zap,       label: "Tecnología y Servicios",           desc: "Startups, agencias, consultoras y empresas de servicios profesionales." },
-  { Icon: Target,    label: "Desarrollos Inmobiliarios",        desc: "Fideicomisos, inversores y desarrolladoras residenciales y comerciales." },
+  { Icon: Building2, label: "Construcción e Infraestructura", desc: "Empresas constructoras, inmobiliarias y desarrolladoras de obra pública y privada." },
+  { Icon: Layers,    label: "Manufactura e Industria",         desc: "Plantas industriales, fábricas y empresas de producción regional." },
+  { Icon: Globe,     label: "Agroindustria y Exportación",     desc: "Bodegas, empacadoras, cooperativas y exportadores de productos regionales." },
+  { Icon: BarChart3, label: "Comercio y Distribución",         desc: "Comercios mayoristas, distribuidores y cadenas de retail locales." },
+  { Icon: Zap,       label: "Tecnología y Servicios",          desc: "Startups, agencias, consultoras y empresas de servicios profesionales." },
+  { Icon: Target,    label: "Desarrollos Inmobiliarios",       desc: "Fideicomisos, inversores y desarrolladoras residenciales y comerciales." },
 ];
 
 const TESTIMONIOS = [
-  {
-    quote: "Lograron lo que otras consultoras no pudieron: que mi equipo adopte los procesos. La visión integrada es su gran valor.",
-    autor: "Directora Industrial",
-    org:   "Industria manufacturera · San Juan",
-  },
-  {
-    quote: "Profesionalismo y cercanía. Excelsa nos dio el orden administrativo que necesitábamos para poder exportar y escalar.",
-    autor: "Socio Gerente",
-    org:   "Empresa constructora · Cuyo",
-  },
-  {
-    quote: "El diagnóstico inicial nos abrió los ojos. En seis meses redujimos costos y triplicamos el control sobre el negocio.",
-    autor: "Gerente General",
-    org:   "Distribuidora regional · San Juan",
-  },
-  {
-    quote: "Por primera vez entendemos realmente la rentabilidad de cada línea. Excelsa transformó la forma en que tomamos decisiones.",
-    autor: "Dueño",
-    org:   "Comercio mayorista · Cuyo",
-  },
+  { quote: "Lograron lo que otras consultoras no pudieron: que mi equipo adopte los procesos. La visión integrada es su gran valor.", autor: "Directora Industrial", org: "Industria manufacturera · San Juan" },
+  { quote: "Profesionalismo y cercanía. Excelsa nos dio el orden administrativo que necesitábamos para poder exportar y escalar.",      autor: "Socio Gerente",       org: "Empresa constructora · Cuyo" },
+  { quote: "El diagnóstico inicial nos abrió los ojos. En seis meses redujimos costos y triplicamos el control sobre el negocio.",        autor: "Gerente General",     org: "Distribuidora regional · San Juan" },
+  { quote: "Por primera vez entendemos realmente la rentabilidad de cada línea. Transformaron la forma en que tomamos decisiones.",       autor: "Dueño",               org: "Comercio mayorista · Cuyo" },
 ];
 
 export default function CasosPage() {
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans antialiased">
+    <div className="min-h-screen bg-excelsa-cream font-body text-excelsa-ink antialiased">
       <NavbarPublic />
 
-      {/* ── HERO ── */}
-      <section className="relative pt-36 pb-24 lg:pt-44 lg:pb-32 bg-[#080e1d] overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.035]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.6) 1px,transparent 1px),
-                              linear-gradient(90deg,rgba(255,255,255,0.6) 1px,transparent 1px)`,
-            backgroundSize: '72px 72px',
-          }}
-        />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-blue-800/12 blur-[120px] pointer-events-none" />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10">
-          <motion.div initial="hidden" animate="visible" variants={stagger} className="space-y-6">
-            <motion.span variants={fadeUp} className="text-[10px] font-black uppercase tracking-[0.35em] text-blue-400">
-              Casos
-            </motion.span>
-            <motion.h1 variants={fadeUp}
-              className="text-5xl lg:text-7xl font-black text-white tracking-[-0.03em] leading-[0.9]">
-              Empresas que confiaron en nosotros.
-            </motion.h1>
-            <motion.p variants={fadeUp} className="text-lg text-slate-400 max-w-xl leading-relaxed">
-              Resultados reales en industrias diversas a lo largo de toda la región de Cuyo.
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Casos"
+        title="Empresas que ya están subiendo con nosotros."
+        subtitle="Resultados reales en industrias diversas a lo largo de toda la región de Cuyo."
+      />
 
       {/* ── STATS ── */}
-      <section className="border-b border-slate-200 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-slate-200">
-            {STATS.map((s, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.65 }}
-                className="px-10 py-14 lg:py-16"
-              >
-                <div className="text-5xl lg:text-6xl font-black text-slate-900 tracking-tight">{s.value}</div>
-                <div className="mt-4 space-y-1">
-                  <div className="text-xs font-black text-slate-900 uppercase tracking-widest">{s.label}</div>
-                  <div className="text-xs text-slate-400 leading-snug">{s.sub}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+      <section className="relative overflow-hidden bg-excelsa-navy py-16">
+        <ContourBg tone="navy" />
+        <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-2 gap-y-10 px-6 lg:grid-cols-4 lg:px-10">
+          {STATS.map((s, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.6 }}
+              className="text-center lg:border-r lg:border-white/10 lg:last:border-0"
+            >
+              <div className="font-display text-5xl font-semibold text-excelsa-cream lg:text-6xl">{s.value}</div>
+              <div className="mt-3 text-[11px] font-bold uppercase tracking-[0.18em] text-excelsa-cream/55">{s.label}</div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
       {/* ── SECTORES ── */}
-      <section className="py-32 lg:py-44 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-
-          <motion.div
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}
-            className="mb-16 space-y-4"
-          >
-            <motion.span variants={fadeUp} className="text-[10px] font-black uppercase tracking-[0.35em] text-blue-700">
+      <section className="py-24 lg:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="mb-14 max-w-xl space-y-4">
+            <motion.span variants={fadeUp} className="text-[11px] font-bold uppercase tracking-[0.28em] text-excelsa-clay">
               Industrias
             </motion.span>
-            <motion.h2 variants={fadeUp}
-              className="text-4xl lg:text-5xl font-black text-slate-900 tracking-[-0.025em]">
+            <motion.h2 variants={fadeUp} className="font-display text-4xl font-medium leading-tight tracking-[-0.02em] text-excelsa-navy lg:text-5xl">
               Experiencia transversal en todos los sectores.
             </motion.h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {SECTORES.map(({ Icon, label, desc }, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ delay: i * 0.08, duration: 0.6 }}
-                className="group flex gap-5 p-8 rounded-2xl border border-slate-100 bg-slate-50/60
-                           hover:border-blue-200 hover:shadow-md transition-all duration-300"
+                className="group flex gap-5 rounded-2xl border border-excelsa-sand2/80 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-excelsa-clay/40 hover:shadow-xl hover:shadow-excelsa-navy/5"
               >
-                <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center
-                                text-slate-400 group-hover:text-blue-700 group-hover:border-blue-200
-                                transition-all duration-300 shadow-sm flex-shrink-0">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-excelsa-claysoft/40 text-excelsa-clay transition-colors group-hover:bg-excelsa-clay group-hover:text-white">
                   <Icon size={20} />
                 </div>
                 <div>
-                  <h4 className="font-black text-slate-900 mb-1.5">{label}</h4>
-                  <p className="text-sm text-slate-500 leading-relaxed">{desc}</p>
+                  <h4 className="font-display text-lg font-medium text-excelsa-navy">{label}</h4>
+                  <p className="mt-1.5 text-sm leading-relaxed text-excelsa-ink/65">{desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -151,43 +96,34 @@ export default function CasosPage() {
       </section>
 
       {/* ── TESTIMONIOS ── */}
-      <section className="py-32 lg:py-44 bg-[#f8fafc] border-y border-slate-100">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-
-          <motion.div
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}
-            className="mb-16 space-y-4"
-          >
-            <motion.span variants={fadeUp} className="text-[10px] font-black uppercase tracking-[0.35em] text-blue-700">
+      <section className="bg-excelsa-sand/50 py-24 lg:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="mb-14 max-w-xl space-y-4">
+            <motion.span variants={fadeUp} className="text-[11px] font-bold uppercase tracking-[0.28em] text-excelsa-clay">
               Testimonios
             </motion.span>
-            <motion.h2 variants={fadeUp}
-              className="text-4xl lg:text-5xl font-black text-slate-900 tracking-[-0.025em]">
+            <motion.h2 variants={fadeUp} className="font-display text-4xl font-medium leading-tight tracking-[-0.02em] text-excelsa-navy lg:text-5xl">
               Lo que dicen quienes confían en Excelsa.
             </motion.h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {TESTIMONIOS.map((t, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.7 }}
-                className="relative overflow-hidden bg-white border border-slate-100 rounded-3xl p-10"
+                className="rounded-[1.5rem] border border-excelsa-sand2/80 bg-white p-9"
               >
-                <div className="absolute top-6 left-8 text-9xl text-slate-100 font-serif leading-none select-none">"</div>
-                <div className="relative z-10 space-y-6">
-                  <p className="text-lg text-slate-700 leading-relaxed italic">"{t.quote}"</p>
-                  <div className="flex items-center gap-4 pt-5 border-t border-slate-200">
-                    <div className="w-10 h-10 rounded-full bg-blue-700/10 flex items-center justify-center text-blue-700 font-black text-sm">
-                      {t.autor.charAt(0)}
-                    </div>
-                    <div>
-                      <div className="text-sm font-black text-slate-900">{t.autor}</div>
-                      <div className="text-[10px] text-slate-400 uppercase tracking-widest mt-0.5">{t.org}</div>
-                    </div>
+                <Quote size={30} className="text-excelsa-clay/50" />
+                <p className="mt-5 text-lg leading-relaxed text-excelsa-ink/80">{t.quote}</p>
+                <div className="mt-6 flex items-center gap-4 border-t border-excelsa-sand2/70 pt-5">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-excelsa-navy font-display text-base font-semibold text-excelsa-cream">
+                    {t.autor.charAt(0)}
+                  </div>
+                  <div>
+                    <div className="text-sm font-bold text-excelsa-navy">{t.autor}</div>
+                    <div className="text-[11px] uppercase tracking-wider text-excelsa-ink/45">{t.org}</div>
                   </div>
                 </div>
               </motion.div>
@@ -197,28 +133,17 @@ export default function CasosPage() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-32 bg-[#080e1d] relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                        w-[700px] h-[400px] rounded-full bg-blue-700/10 blur-[120px] pointer-events-none" />
-        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center space-y-8">
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            className="text-4xl lg:text-5xl font-black text-white tracking-[-0.025em]"
-          >
-            Su empresa puede ser el próximo caso de éxito.
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            transition={{ delay: 0.15 }}
-          >
-            <Link
-              href={WHATSAPP_LINK} target="_blank"
-              className="group inline-flex items-center gap-3 px-10 py-5 bg-white text-[#0c1a3e]
-                         font-black rounded-full hover:bg-slate-100 transition-all text-sm"
-            >
-              Hablemos <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+      <section className="relative overflow-hidden bg-excelsa-navy py-24 lg:py-28">
+        <ContourBg tone="navy" />
+        <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
+          <h2 className="font-display text-4xl font-medium leading-tight tracking-[-0.02em] text-excelsa-cream lg:text-5xl">
+            Tu empresa puede ser el próximo caso de éxito.
+          </h2>
+          <div className="mt-9">
+            <Link href={WHATSAPP_LINK} target="_blank" className="group inline-flex items-center gap-2.5 rounded-full bg-excelsa-clay px-9 py-4 text-sm font-bold text-white transition-all hover:bg-white hover:text-excelsa-navy">
+              Hablemos <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 

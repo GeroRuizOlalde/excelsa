@@ -1,85 +1,111 @@
 import Link from 'next/link';
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle, ArrowUpRight, MapPin } from 'lucide-react';
 import { WHATSAPP_LINK } from '@/lib/constants';
+import ContourBg from './ContourBg';
 
 export default function FooterPublic() {
   return (
-    <footer className="bg-white border-t border-slate-100">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+    <footer className="relative overflow-hidden bg-excelsa-navy font-body text-excelsa-cream">
+      <ContourBg tone="navy" className="opacity-70" />
 
-        <div className="py-16 grid grid-cols-1 md:grid-cols-4 gap-12">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-10">
 
-          {/* Brand */}
-          <div className="space-y-5">
+        {/* Llamado final */}
+        <div className="flex flex-col gap-8 border-b border-white/10 py-16 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-xl space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-[#0c1a3e] rounded-lg flex items-center justify-center font-black text-white text-sm italic">E</div>
-              <span className="text-[11px] font-black uppercase tracking-[0.25em] text-slate-900">Excelsa</span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logoblanco.png" alt="Excelsa" className="h-10 w-auto" />
+              <span className="font-display text-2xl font-medium">Excelsa</span>
             </div>
-            <p className="text-sm text-slate-500 leading-relaxed max-w-[220px]">
-              Consultoría empresarial integral para organizaciones que buscan crecer con estructura y visión.
+            <p className="font-display text-2xl leading-snug text-excelsa-cream/90 sm:text-3xl">
+              ¿Empezamos a subir la próxima cima de tu empresa?
+            </p>
+          </div>
+          <Link
+            href={WHATSAPP_LINK}
+            target="_blank"
+            className="group inline-flex shrink-0 items-center gap-3 rounded-full bg-excelsa-clay px-7 py-4 font-bold text-excelsa-cream transition-all hover:bg-white hover:text-excelsa-navy"
+          >
+            <MessageCircle size={18} /> Hablemos por WhatsApp
+            <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
+        </div>
+
+        {/* Columnas */}
+        <div className="grid grid-cols-2 gap-10 py-14 md:grid-cols-4">
+          <div className="col-span-2 space-y-4 md:col-span-1">
+            <p className="max-w-[240px] text-sm leading-relaxed text-excelsa-cream/55">
+              Consultoría empresarial integral en San Juan. Estructura, visión y ejecución
+              para organizaciones que quieren crecer en serio.
+            </p>
+            <p className="flex items-center gap-2 text-sm text-excelsa-cream/55">
+              <MapPin size={14} className="text-excelsa-clay" /> San Juan, Argentina
             </p>
           </div>
 
-          {/* Empresa */}
-          <div className="space-y-5">
-            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Empresa</span>
-            <nav className="flex flex-col gap-3">
-              {[
-                { href: '/nosotros',  label: 'Nosotros' },
-                { href: '/servicios', label: 'Servicios' },
-                { href: '/casos',     label: 'Casos' },
-                { href: '/contacto',  label: 'Contacto' },
-              ].map(({ href, label }) => (
-                <Link key={href} href={href}
-                  className="text-sm text-slate-500 hover:text-blue-700 transition-colors font-medium">
-                  {label}
-                </Link>
-              ))}
-            </nav>
-          </div>
+          <FooterCol
+            title="Empresa"
+            links={[
+              { href: '/nosotros',  label: 'Nosotros' },
+              { href: '/servicios', label: 'Servicios' },
+              { href: '/casos',     label: 'Casos' },
+              { href: '/contacto',  label: 'Contacto' },
+            ]}
+          />
+          <FooterCol
+            title="Servicios"
+            links={[
+              { href: '/servicios', label: 'Soluciones Empresariales' },
+              { href: '/servicios', label: 'Gestión y Estrategia' },
+              { href: '/servicios', label: 'Crecimiento Sostenible' },
+            ]}
+          />
 
-          {/* Servicios */}
-          <div className="space-y-5">
-            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Servicios</span>
+          <div className="space-y-4">
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-excelsa-cream/40">Acceso</p>
             <nav className="flex flex-col gap-3">
-              {[
-                'Soluciones Empresariales',
-                'Gestión y Estrategia',
-                'Crecimiento Sostenible',
-              ].map((s) => (
-                <Link key={s} href="/servicios"
-                  className="text-sm text-slate-500 hover:text-blue-700 transition-colors font-medium">
-                  {s}
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          {/* Contacto */}
-          <div className="space-y-5">
-            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Contacto</span>
-            <div className="space-y-3">
-              <p className="text-sm text-slate-500">San Juan, Argentina</p>
-              <Link
-                href={WHATSAPP_LINK}
-                target="_blank"
-                className="inline-flex items-center gap-2 text-sm font-bold text-[#25D366] hover:opacity-75 transition-opacity"
-              >
-                <MessageCircle size={14} /> WhatsApp Directo
+              <Link href="/login" className="text-sm text-excelsa-cream/65 transition-colors hover:text-white">
+                Portal de clientes
               </Link>
-            </div>
+              <Link href={WHATSAPP_LINK} target="_blank" className="text-sm font-semibold text-excelsa-clay transition-colors hover:text-white">
+                WhatsApp directo
+              </Link>
+            </nav>
           </div>
         </div>
 
-        <div className="py-6 border-t border-slate-100 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-            © 2026 Excelsa · Todos los derechos reservados.
+        {/* Base */}
+        <div className="flex flex-col items-center justify-between gap-3 border-t border-white/10 py-7 md:flex-row">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-excelsa-cream/40">
+            © {new Date().getFullYear()} Excelsa · Todos los derechos reservados
           </p>
-          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-            Desarrollado por <span className="text-blue-700">Riva Estudio</span>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-excelsa-cream/40">
+            Desarrollado por <span className="text-excelsa-clay">Riva Estudio</span>
           </p>
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterCol({
+  title,
+  links,
+}: {
+  title: string;
+  links: { href: string; label: string }[];
+}) {
+  return (
+    <div className="space-y-4">
+      <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-excelsa-cream/40">{title}</p>
+      <nav className="flex flex-col gap-3">
+        {links.map(({ href, label }) => (
+          <Link key={label} href={href} className="text-sm text-excelsa-cream/65 transition-colors hover:text-white">
+            {label}
+          </Link>
+        ))}
+      </nav>
+    </div>
   );
 }
