@@ -14,7 +14,7 @@ import FooterPublic from '@/components/FooterPublic';
 import ContourBg from '@/components/ContourBg';
 import { WHATSAPP_LINK } from '@/lib/constants';
 import { fadeUp, stagger, staggerFast } from '@/lib/motion';
-import { supabase } from '@/lib/supabase';
+
 
 // ─── DATOS ──────────────────────────────────────────────────────────────────
 
@@ -133,18 +133,16 @@ function DossierModal({
       setError('');
 
       try {
-        const { error: dbError } = await supabase
-          .from('leads_mineria')
-          .insert({
-            nombre,
-            email,
-            empresa,
-            cargo,
-            origen: 'dossier_compliance',
-            created_at: new Date().toISOString(),
-          });
+        const res = await fetch(
+          'https://hook.us2.make.com/461vlb4gin1w2h0z1m3a1rbmnp66n1a7',
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nombre, email, empresa, cargo }),
+          }
+        );
 
-        if (dbError) throw dbError;
+        if (!res.ok) throw new Error('Error en el envío');
         setSuccess(true);
       } catch {
         setError('Ocurrió un error al enviar. Intentá nuevamente o escribinos por WhatsApp.');
