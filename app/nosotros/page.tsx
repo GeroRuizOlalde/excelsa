@@ -108,7 +108,7 @@ export default function NosotrosPage() {
             transition={{ duration: 0.9 }}
             className="relative aspect-[16/9] overflow-hidden rounded-[2rem] shadow-2xl shadow-excelsa-navy/15 md:aspect-[2/1]"
           >
-            <img src="/DSC_4794.JPG" alt="Equipo Excelsa" className="h-full w-full object-cover object-[center_30%]" />
+            <img src="/DSC_4794.JPG" alt="Equipo Excelsa" className="h-full w-full object-cover object-[75%_30%]" />
             <div className="absolute inset-0 bg-gradient-to-t from-excelsa-navy/25 to-transparent" />
           </motion.div>
         </div>

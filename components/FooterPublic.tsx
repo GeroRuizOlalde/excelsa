@@ -81,7 +81,7 @@ export default function FooterPublic() {
             © {new Date().getFullYear()} Excelsa · Todos los derechos reservados
           </p>
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-excelsa-cream/40">
-            Desarrollado por <span className="text-excelsa-clay">Riva Estudio</span>
+            Desarrollado por <a href="https://rivaestudio.com.ar" target="_blank" rel="noopener noreferrer" className="text-excelsa-clay transition-colors hover:text-white">Riva Estudio</a>
           </p>
         </div>
       </div>

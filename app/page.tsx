@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
   ArrowUpRight, ArrowRight, MessageCircle, Building2, Settings, TrendingUp,
@@ -15,10 +16,10 @@ import { fadeUp, stagger, staggerFast } from '@/lib/motion';
 
 // ─── DATOS ──────────────────────────────────────────────────────────────────
 const STATS = [
-  { value: "200+", label: "Empresas acompañadas" },
-  { value: "15+",  label: "Años de trayectoria" },
-  { value: "98%",  label: "Retención de clientes" },
-  { value: "3×",   label: "Crecimiento promedio" },
+  { value: "+200",   label: "Empresas auditadas" },
+  { value: "1.500+", label: "Operarios bajo gestión de nómina" },
+  { value: "15",     label: "Años de trayectoria en Cuyo" },
+  { value: "98%",    label: "Retención de clientes" },
 ];
 
 // Dolores reales del dueño / directivo — la sección que genera identificación.
@@ -125,9 +126,9 @@ export default function LandingExcelsa() {
               variants={fadeUp}
               className="font-display text-[2.9rem] font-medium leading-[1.02] tracking-[-0.02em] text-excelsa-navy sm:text-6xl lg:text-[4.6rem]"
             >
-              Llevamos tu empresa
+              Estructuramos, auditamos
               <br />
-              a la <span className="italic text-excelsa-clay brush-underline">próxima cima</span>.
+              y <span className="italic text-excelsa-clay brush-underline">escalamos empresas</span> en&nbsp;Cuyo.
             </motion.h1>
 
             <motion.p variants={fadeUp} className="max-w-xl text-lg leading-relaxed text-excelsa-ink/70">
@@ -137,32 +138,25 @@ export default function LandingExcelsa() {
             </motion.p>
 
             <motion.div variants={fadeUp} className="flex flex-col gap-3 pt-1 sm:flex-row sm:items-center">
-              <Link
-                href="/contacto"
+              <a
+                href="#servicios"
                 className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-excelsa-navy px-8 py-4 text-sm font-bold text-excelsa-cream shadow-xl shadow-excelsa-navy/20 transition-all hover:bg-excelsa-clay"
               >
-                Diagnóstico sin cargo
-                <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
+                Ver Soluciones Empresariales
+                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+              </a>
               <Link
-                href="/servicios"
-                className="inline-flex items-center justify-center gap-2.5 rounded-full border border-excelsa-navy/20 px-8 py-4 text-sm font-bold text-excelsa-navy transition-all hover:border-excelsa-navy/50 hover:bg-white/50"
+                href="/mineria"
+                className="group inline-flex items-center justify-center gap-2.5 rounded-full border border-excelsa-clay/50 px-8 py-4 text-sm font-bold text-excelsa-navy transition-all hover:border-excelsa-clay hover:bg-excelsa-clay/10"
               >
-                Ver servicios
+                <Mountain size={15} className="text-excelsa-clay" />
+                Especialistas en Sector Minero
               </Link>
             </motion.div>
 
-            <motion.div variants={fadeUp} className="flex items-center gap-7 pt-3">
-              {STATS.slice(0, 3).map((s) => (
-                <div key={s.label}>
-                  <div className="font-display text-3xl font-semibold text-excelsa-navy">{s.value}</div>
-                  <div className="text-[11px] font-semibold uppercase tracking-wider text-excelsa-ink/45">{s.label}</div>
-                </div>
-              ))}
-            </motion.div>
           </motion.div>
 
-          {/* Imagen */}
+          {/* Imagen — LCP optimizado con next/image priority */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -172,8 +166,14 @@ export default function LandingExcelsa() {
             {/* marco terracota detrás */}
             <div className="absolute -bottom-5 -right-5 h-full w-full rounded-[2rem] border-2 border-excelsa-clay/40" />
             <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] shadow-2xl shadow-excelsa-navy/20">
-              {/* Reemplazá por una foto del equipo/oficina cuando quieras: /fotos/hero.jpg */}
-              <img src="/DSC_4808.JPG" alt="Equipo Excelsa" className="h-full w-full object-cover" />
+              <Image
+                src="/DSC_4808.JPG"
+                alt="Equipo Excelsa en reunión de consultoría empresarial"
+                fill
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                priority
+                className="object-cover"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-excelsa-navy/30 to-transparent" />
             </div>
             {/* tarjeta flotante */}
@@ -183,9 +183,9 @@ export default function LandingExcelsa() {
               transition={{ delay: 0.6, duration: 0.7 }}
               className="absolute -bottom-7 -left-5 rounded-2xl border border-excelsa-sand2 bg-white/95 px-6 py-5 shadow-xl backdrop-blur"
             >
-              <div className="font-display text-3xl font-semibold text-excelsa-navy">+3×</div>
+              <div className="font-display text-3xl font-semibold text-excelsa-navy">+200</div>
               <div className="mt-0.5 text-[11px] font-semibold uppercase tracking-wider text-excelsa-ink/50">
-                Crecimiento a 12 meses
+                Empresas auditadas
               </div>
             </motion.div>
           </motion.div>
@@ -259,7 +259,7 @@ export default function LandingExcelsa() {
       </section>
 
       {/* ══════════ SERVICIOS ══════════ */}
-      <section className="texture-grain relative bg-excelsa-sand/50 py-24 lg:py-32">
+      <section id="servicios" className="texture-grain relative bg-excelsa-sand/50 py-24 lg:py-32 scroll-mt-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}
@@ -313,6 +313,54 @@ export default function LandingExcelsa() {
         </div>
       </section>
 
+      {/* ══════════ SECCIÓN PUENTE — COMPLIANCE MINERO ══════════ */}
+      <section className="relative overflow-hidden bg-excelsa-navy py-20 lg:py-24">
+        <ContourBg tone="navy" />
+        {/* Halo terracota sutil */}
+        <div className="pointer-events-none absolute -left-32 top-1/2 h-[400px] w-[600px] -translate-y-1/2 rounded-full bg-excelsa-clay/8 blur-[120px]" />
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={stagger}
+          className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-8 px-6 text-center lg:flex-row lg:gap-16 lg:px-10 lg:text-left"
+        >
+          {/* Icono / visual */}
+          <motion.div
+            variants={fadeUp}
+            className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm"
+          >
+            <Mountain size={36} className="text-excelsa-clay" />
+          </motion.div>
+
+          {/* Copy */}
+          <motion.div variants={fadeUp} className="max-w-2xl space-y-4">
+            <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-excelsa-clay">
+              Compliance Minero
+            </span>
+            <h2 className="font-display text-3xl font-medium leading-tight tracking-[-0.02em] text-excelsa-cream lg:text-4xl">
+              La industria minera exige otro nivel de rigurosidad.
+            </h2>
+            <p className="text-base leading-relaxed text-excelsa-cream/65">
+              Conozca nuestro servicio de Due Diligence, Control de Contratistas
+              y adecuación a la Ley&nbsp;2827&#8209;M.
+            </p>
+          </motion.div>
+
+          {/* CTA */}
+          <motion.div variants={fadeUp} className="shrink-0">
+            <Link
+              href="/mineria"
+              className="group inline-flex items-center gap-2.5 rounded-full bg-excelsa-clay px-8 py-4 text-sm font-bold text-white shadow-2xl shadow-excelsa-clay/25 transition-all hover:bg-white hover:text-excelsa-navy"
+            >
+              Ir a Compliance Minero
+              <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+            </Link>
+          </motion.div>
+        </motion.div>
+      </section>
+
       {/* ══════════ NOSOTROS TEASER ══════════ */}
       <section className="py-24 lg:py-32">
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 px-6 lg:grid-cols-2 lg:gap-24 lg:px-10">
@@ -323,8 +371,14 @@ export default function LandingExcelsa() {
           >
             <div className="absolute -left-5 -top-5 h-full w-full rounded-[2rem] bg-excelsa-claysoft/30" />
             <div className="relative aspect-[5/4] overflow-hidden rounded-[2rem] shadow-2xl shadow-excelsa-navy/20">
-              {/* Foto de equipo/oficina: /fotos/equipo.jpg */}
-              <img src="/DSC_4789.JPG" alt="Equipo Excelsa trabajando" className="h-full w-full object-cover" />
+              {/* Foto de equipo/oficina */}
+              <Image
+                src="/DSC_4789.JPG"
+                alt="Equipo Excelsa trabajando en consultoría"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover object-[25%_center]"
+              />
             </div>
           </motion.div>
 

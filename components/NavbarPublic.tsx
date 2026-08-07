@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, LogIn, ArrowUpRight } from 'lucide-react';
+import { Menu, X, LogIn, ArrowUpRight, Mountain } from 'lucide-react';
 import { WHATSAPP_LINK } from '@/lib/constants';
 
 const NAV_LINKS = [
@@ -13,6 +13,8 @@ const NAV_LINKS = [
   { href: '/casos',     label: 'Casos' },
   { href: '/contacto',  label: 'Contacto' },
 ];
+
+const MINERIA_LINK = { href: '/mineria', label: 'Sector Minero' };
 
 export default function NavbarPublic() {
   const pathname = usePathname();
@@ -73,6 +75,22 @@ export default function NavbarPublic() {
             );
           })}
 
+          {/* Divisor */}
+          <span className="h-5 w-px bg-excelsa-sand2/70" />
+
+          {/* Badge Sector Minero — destacado */}
+          <Link
+            href={MINERIA_LINK.href}
+            className={`group flex items-center gap-2 rounded-full border px-4 py-2 text-[12px] font-bold tracking-wide transition-all duration-300 ${
+              pathname === MINERIA_LINK.href
+                ? 'border-blue-400/70 bg-blue-400/15 text-blue-500 shadow-[0_0_14px_-3px_rgba(96,165,250,0.35)]'
+                : 'border-blue-400/40 bg-blue-50/60 text-blue-600 hover:border-blue-400/70 hover:bg-blue-400/15 hover:shadow-[0_0_14px_-3px_rgba(96,165,250,0.3)]'
+            }`}
+          >
+            <Mountain size={13} className="text-blue-400" />
+            {MINERIA_LINK.label}
+          </Link>
+
           <Link
             href="/login"
             className="flex items-center gap-1.5 text-[13px] font-semibold text-excelsa-ink/60 transition-colors hover:text-excelsa-navy"
@@ -126,6 +144,21 @@ export default function NavbarPublic() {
                   {label}
                 </Link>
               ))}
+
+              {/* Sector Minero — destacado en mobile */}
+              <Link
+                href={MINERIA_LINK.href}
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-between border-b border-excelsa-sand2/50 py-4"
+              >
+                <span className="flex items-center gap-3 font-display text-2xl font-medium text-excelsa-navy">
+                  <Mountain size={20} className="text-blue-400" />
+                  {MINERIA_LINK.label}
+                </span>
+                <span className="rounded-full bg-excelsa-clay/15 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-excelsa-clay">
+                  Nuevo
+                </span>
+              </Link>
               <Link
                 href="/contacto"
                 onClick={() => setMenuOpen(false)}
