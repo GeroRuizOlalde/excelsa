@@ -198,6 +198,15 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
   type __Unused = __Check
 }
 
+// Validate ../../../app/mineria/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/mineria">> = Specific
+  const handler = {} as typeof import("../../../app/mineria/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/nosotros/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/nosotros">> = Specific
@@ -244,6 +253,15 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
 {
   type __IsExpected<Specific extends LayoutConfig<"/">> = Specific
   const handler = {} as typeof import("../../../app/layout.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/mineria/layout.tsx
+{
+  type __IsExpected<Specific extends LayoutConfig<"/mineria">> = Specific
+  const handler = {} as typeof import("../../../app/mineria/layout.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
