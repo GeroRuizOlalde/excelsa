@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
   ArrowUpRight, ArrowRight, MessageCircle, Building2, Settings, TrendingUp,
-  Clock, UserCheck, PieChart, Boxes, Compass, Rocket, Quote, Mountain,
+  Clock, UserCheck, PieChart, Boxes, Compass, Rocket, Quote, Mountain, Users,
 } from 'lucide-react';
 import NavbarPublic from '@/components/NavbarPublic';
 import FooterPublic from '@/components/FooterPublic';
@@ -38,18 +38,28 @@ const SERVICIOS = [
     titulo: "Soluciones Empresariales",
     desc: "Ordenamos la base financiera, legal y administrativa para que tu empresa crezca sobre cimientos firmes.",
     items: ["Contabilidad e Impuestos", "Asesoría Legal", "Administración y Finanzas"],
+    cta: { label: "Ver Soluciones Empresariales", href: "/servicios" },
   },
   {
     num: "02", Icon: Settings,
     titulo: "Gestión y Estrategia",
     desc: "Traducimos los objetivos del negocio en procesos concretos, tableros de control y equipos que saben qué hacer.",
     items: ["Planificación Estratégica OKR", "Logística y Operaciones", "Gestión de Procesos"],
+    cta: { label: "Ver Gestión y Estrategia", href: "/servicios" },
   },
   {
     num: "03", Icon: TrendingUp,
     titulo: "Crecimiento Sostenible",
     desc: "Diseñamos estrategia comercial, marca y propósito para un crecimiento que se sostiene en el tiempo.",
     items: ["Comercialización y Marca", "Desarrollo de Producto", "Sostenibilidad (ODS)"],
+    cta: { label: "Ver Crecimiento Sostenible", href: "/servicios" },
+  },
+  {
+    num: "04", Icon: Users,
+    titulo: "Personas y Cultura",
+    desc: "El motor de su organización. Integramos la gestión de personas a la estrategia del negocio para equipos que crecen junto a la empresa.",
+    items: ["Gestión estratégica de RRHH", "Desarrollo de liderazgo", "Evaluación de desempeño"],
+    cta: { label: "Ver Soluciones de Cultura", href: "/cultura" },
   },
 ];
 
@@ -270,7 +280,7 @@ export default function LandingExcelsa() {
                 Cómo te ayudamos
               </motion.span>
               <motion.h2 variants={fadeUp} className="font-display text-4xl font-medium leading-tight tracking-[-0.02em] text-excelsa-navy lg:text-5xl">
-                Tres frentes, una sola dirección.
+                Cuatro frentes, una sola dirección.
               </motion.h2>
             </div>
             <motion.div variants={fadeUp}>
@@ -281,8 +291,8 @@ export default function LandingExcelsa() {
             </motion.div>
           </motion.div>
 
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-            {SERVICIOS.map(({ num, Icon, titulo, desc, items }, i) => (
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {SERVICIOS.map(({ num, Icon, titulo, desc, items, cta }, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 28 }}
@@ -306,6 +316,15 @@ export default function LandingExcelsa() {
                       {item}
                     </div>
                   ))}
+                </div>
+                <div className="mt-auto pt-7">
+                  <Link
+                    href={cta.href}
+                    className="inline-flex items-center gap-2 text-sm font-bold text-excelsa-navy transition-colors hover:text-excelsa-clay"
+                  >
+                    {cta.label}
+                    <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                  </Link>
                 </div>
               </motion.div>
             ))}
