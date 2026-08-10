@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, LogIn, ArrowUpRight, Mountain } from 'lucide-react';
+import { Menu, X, LogIn, ArrowUpRight, Mountain, Users } from 'lucide-react';
 import { WHATSAPP_LINK } from '@/lib/constants';
 
 const NAV_LINKS = [
@@ -15,6 +15,7 @@ const NAV_LINKS = [
 ];
 
 const MINERIA_LINK = { href: '/mineria', label: 'Sector Minero' };
+const CULTURA_LINK = { href: '/cultura', label: 'Personas y Cultura' };
 
 export default function NavbarPublic() {
   const pathname = usePathname();
@@ -91,6 +92,19 @@ export default function NavbarPublic() {
             {MINERIA_LINK.label}
           </Link>
 
+          {/* Badge Personas y Cultura */}
+          <Link
+            href={CULTURA_LINK.href}
+            className={`group flex items-center gap-2 rounded-full border px-4 py-2 text-[12px] font-bold tracking-wide transition-all duration-300 ${
+              pathname === CULTURA_LINK.href
+                ? 'border-excelsa-clay/70 bg-excelsa-claysoft/40 text-excelsa-clay shadow-[0_0_14px_-3px_rgba(193,95,60,0.35)]'
+                : 'border-excelsa-clay/30 bg-excelsa-claysoft/20 text-excelsa-clay hover:border-excelsa-clay/60 hover:bg-excelsa-claysoft/40 hover:shadow-[0_0_14px_-3px_rgba(193,95,60,0.25)]'
+            }`}
+          >
+            <Users size={13} className="text-excelsa-clay" />
+            {CULTURA_LINK.label}
+          </Link>
+
           <Link
             href="/login"
             className="flex items-center gap-1.5 text-[13px] font-semibold text-excelsa-ink/60 transition-colors hover:text-excelsa-navy"
@@ -159,6 +173,19 @@ export default function NavbarPublic() {
                   Nuevo
                 </span>
               </Link>
+
+              {/* Personas y Cultura — destacado en mobile */}
+              <Link
+                href={CULTURA_LINK.href}
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-between border-b border-excelsa-sand2/50 py-4"
+              >
+                <span className="flex items-center gap-3 font-display text-2xl font-medium text-excelsa-navy">
+                  <Users size={20} className="text-excelsa-clay" />
+                  {CULTURA_LINK.label}
+                </span>
+              </Link>
+
               <Link
                 href="/contacto"
                 onClick={() => setMenuOpen(false)}
