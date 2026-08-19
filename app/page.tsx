@@ -63,17 +63,14 @@ const SERVICIOS = [
   },
 ];
 
-// Logos de clientes. Reemplazá cada item por { nombre, logo: "/clientes/archivo.png" }
-// cuando tengas los logos: el componente usa la imagen automáticamente si existe.
 const CLIENTES: { nombre: string; logo?: string }[] = [
-  { nombre: "Constructora Andina" },
-  { nombre: "Bodega del Sol" },
-  { nombre: "Grupo Cuyo" },
-  { nombre: "Agro Pampa" },
-  { nombre: "Distribuidora Norte" },
-  { nombre: "Industrias Zonda" },
-  { nombre: "Inmobiliaria Cima" },
-  { nombre: "Tecno Sur" },
+  { nombre: "Montilla",        logo: "/clientes/Montilla.png" },
+  { nombre: "Saidel",          logo: "/clientes/Saidel-logo-3.png" },
+  { nombre: "Algar",           logo: "/clientes/algar.png" },
+  { nombre: "Denticlick",      logo: "/clientes/denticlick.png" },
+  { nombre: "Filka",           logo: "/clientes/filka.png" },
+  { nombre: "Fortunato",       logo: "/clientes/fortunato.png" },
+  { nombre: "Isel Ingeniería", logo: "/clientes/iselingenieria.png" },
 ];
 
 // Testimonios. Sumá nombre real, empresa y foto cuando los tengas.
